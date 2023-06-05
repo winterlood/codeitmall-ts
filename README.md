@@ -1,2 +1,5 @@
-# codeitmall-ts
-codeitmall-ts-migration
+# kdt-learn-ts
+
+kdt-learn-ts 특강 교안
+
+---
