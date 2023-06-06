@@ -16,3 +16,14 @@ export interface Product {
 }
 
 export type Theme = "ligth" | "dark";
+
+export interface SizeReview {
+  createdAt: number;
+  updatedAt: number;
+  id: number;
+  sex: "male" | "female";
+  height: number;
+  size: "S" | "M" | "L" | "XL";
+  fit: "small" | "good" | "big";
+  productId: number;
+}
