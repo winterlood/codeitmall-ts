@@ -1,6 +1,6 @@
-import starEmpty from '@/public/star-empty.svg';
-import starFilled from '@/public/star-filled.svg';
-import Image from 'next/image';
+import starEmpty from "@/public/star-empty.svg";
+import starFilled from "@/public/star-filled.svg";
+import Image from "next/image";
 
 const RATINGS = [1, 2, 3, 4, 5];
 
