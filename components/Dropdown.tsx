@@ -1,6 +1,17 @@
-import { useEffect, useState, useRef } from 'react';
-import styles from './Dropdown.module.css';
-import arrowImg from '@/public/arrow.svg';
+import { useEffect, useState, useRef } from "react";
+import styles from "./Dropdown.module.css";
+import arrowImg from "@/public/arrow.svg";
+
+interface Props {
+  className: string;
+  name: string;
+  value: string;
+  options: {
+    value: string;
+    label: string;
+  }[];
+  onChange: (name: string, value: string) => void;
+}
 
 export default function Dropdown({
   className,
@@ -8,9 +19,9 @@ export default function Dropdown({
   value,
   options,
   onChange,
-}) {
+}: Props) {
   const [isOpen, setIsOpen] = useState(false);
-  const inputRef = useRef(null);
+  const inputRef = useRef<HTMLDivElement>(null);
 
   function handleInputClick() {
     setIsOpen((prevIsOpen) => !prevIsOpen);
@@ -21,23 +32,30 @@ export default function Dropdown({
   }
 
   useEffect(() => {
-    function handleClickOutside(e) {
-      const isInside = inputRef.current?.contains(e.target);
+    function handleClickOutside(e: MouseEvent) {
+      const isInside = inputRef.current?.contains(
+        e.target as HTMLElement
+      );
       if (!isInside) {
         setIsOpen(false);
       }
     }
 
-    window.addEventListener('click', handleClickOutside);
+    window.addEventListener("click", handleClickOutside);
     return () => {
-      window.removeEventListener('click', handleClickOutside);
+      window.removeEventListener(
+        "click",
+        handleClickOutside
+      );
     };
   }, []);
 
   const classNames = `${styles.input} ${
-    isOpen ? styles.opened : ''
+    isOpen ? styles.opened : ""
   } ${className}`;
-  const selectedOption = options.find((option) => option.value === value);
+  const selectedOption = options.find(
+    (option) => option.value === value
+  );
 
   return (
     <div
@@ -46,7 +64,7 @@ export default function Dropdown({
       onBlur={handleBlur}
       ref={inputRef}
     >
-      {selectedOption.label}
+      {selectedOption?.label}
       <img
         className={styles.arrow}
         src={arrowImg.src}
@@ -58,7 +76,7 @@ export default function Dropdown({
         {options.map((option) => {
           const selected = value === option.value;
           const className = `${styles.option} ${
-            selected ? styles.selected : ''
+            selected ? styles.selected : ""
           }`;
           return (
             <div

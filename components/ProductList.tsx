@@ -1,21 +1,39 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import styles from './ProductList.module.css';
-import StarRating from './StarRating';
-import heartImage from '@/public/heart.svg';
+import Image from "next/image";
+import Link from "next/link";
+import styles from "./ProductList.module.css";
+import StarRating from "./StarRating";
+import heartImage from "@/public/heart.svg";
+import { Product } from "@/types";
 
-export default function ProductList({ className = '', products }) {
+interface Props {
+  className?: string;
+  products: Product[];
+}
+
+export default function ProductList({
+  className = "",
+  products,
+}: Props) {
   return (
     <ul className={`${styles.productList} ${className}`}>
       {products.map((product) => (
         <li key={product.id}>
-          <Link className={styles.product} href={`/products/${product.id}`}>
+          <Link
+            className={styles.product}
+            href={`/products/${product.id}`}
+          >
             <div className={styles.image}>
-              <Image src={product.imgUrl} fill alt={product.name} />
+              <Image
+                src={product.imgUrl}
+                fill
+                alt={product.name}
+              />
             </div>
             <div className={styles.content}>
               <div>
-                <span className={styles.name}>{product.name}</span>
+                <span className={styles.name}>
+                  {product.name}
+                </span>
                 <div className={styles.prices}>
                   <span className={styles.originalPrice}>
                     {product.price.toLocaleString()}원
