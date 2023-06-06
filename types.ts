@@ -14,3 +14,5 @@ export interface Product {
   updatedAt: number;
   englishName: string;
 }
+
+export type Theme = "ligth" | "dark";
